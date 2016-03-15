@@ -246,11 +246,11 @@ def contacts():
 In web2py, URLs are mapped to Python modules and function calls. In this case, the controller contains
 a single function (or "action") called ``contacts``. An action may
 return a string (the returned web page) or a Python dictionary (a set of
-``key:value`` pairs) or the set of local variables (as in this example).
+``key:value`` pairs).
 If the function returns a dictionary, it is passed to a view with the same
 name as the controller/function, which in turn renders the page.
 In this example, the function ``contacts`` generates a select/search/create/update/delete grid for table ``db.contact``
-and returns the grid to the view.
+and returns the dictionary resulting from ``locals()`` to the view. In that dictionary,``grid`` (being a dictionary) is contained.
 
 **"default/contacts.html" is the view:**
 
@@ -261,7 +261,7 @@ and returns the grid to the view.
 ``:code
 
 This view is called automatically by web2py after the associated controller function (action) is executed.
-The purpose of this view is to render the variables in the returned dictionary (in our case ``grid``) into HTML.
+The purpose of this view is to render the variables (in our case ``grid``) in the returned dictionary into HTML.
 The view file is written in HTML, but it embeds Python code delimited by the special ``{{`` and ``}}``
 delimiters. This is quite different from the PHP code example, because the only code
 embedded into the HTML is "presentation layer" code. The "layout.html" file referenced at the top of the
